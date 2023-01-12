@@ -1,0 +1,26 @@
+{
+  "name": "world-cup-app",
+  "version": "1.0.0",
+  "description": "World Cup booking system app",
+  "private": true,
+  "workspaces": [
+    "src/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "maruf99",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-neon": "^0.1.40",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin": "^1.0.1",
+    "prettier": "^2.8.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4"
+  }
+}
