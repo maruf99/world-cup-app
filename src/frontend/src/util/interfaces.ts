@@ -4,6 +4,7 @@ export interface LoginData {
 }
 
 export interface UserData {
-	id: number;
+	id?: number;
 	username: string;
+	expires: number;
 }

@@ -22,6 +22,8 @@ export class APIError extends Error {
 }
 
 export async function fetchAPI<T>(path: string, options: RequestInit = {}) {
+	console.log(process.env.NEXT_PUBLIC_API_URL);
+
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
 		...options,
 		credentials: 'include',
@@ -87,3 +89,8 @@ export const [UserProvider, useUser, setUser] = constate(
 	(value) => value.user,
 	(value) => value.setUser
 );
+
+// eslint-disable-next-line @typescript-eslint/promise-function-async
+export const wait = (ms: number) => new Promise((resolve) => {
+	setTimeout(resolve, ms);
+});

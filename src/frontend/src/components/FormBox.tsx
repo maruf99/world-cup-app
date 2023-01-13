@@ -1,8 +1,11 @@
 import type { LoginData } from '@/util/interfaces';
-import { Button, Center, FormControl, FormErrorMessage, FormLabel, Heading, Image, Input, Stack, Text } from '@chakra-ui/react';
+import { wait } from '@/util/util';
+import { Button, FormControl, FormErrorMessage, FormLabel, Heading, Image, Input, Stack, Text } from '@chakra-ui/react';
 import type { FieldInputProps, FormikState } from 'formik';
 import { Field, Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
 import * as yup from 'yup';
+import Layout from './Layout';
 
 const validator = (field: string) => {
 	const text = `${field} must be between 5 and 20 characters`;
@@ -19,10 +22,12 @@ export default function FormBox({
 	onSubmit
 }: {
 	title: string;
-	onSubmit: (data: LoginData) => void;
+	onSubmit: (data: LoginData) => Promise<void>;
 }) {
+	const router = useRouter();
+
 	return (
-		<Center bg="blue.200" h="100vh">
+		<Layout>
 			<Stack bg="whiteAlpha.900" boxShadow="md" minWidth="500" p="20" paddingTop="10" rounded="lg">
 				<Image marginBottom="2" maxWidth="100px" mx="auto" src="/world-cup-logo.svg" />
 
@@ -30,11 +35,10 @@ export default function FormBox({
 
 				<Formik
 					initialValues={{ username: '', password: '' }}
-					onSubmit={(data, { setSubmitting }) => {
-						setTimeout(() => {
-							onSubmit(data);
-							setSubmitting(false);
-						}, 1000);
+					onSubmit={async (data, { setSubmitting }) => {
+						await wait(1000);
+						await onSubmit(data);
+						setSubmitting(false);
 					}}
 					validationSchema={LoginSchema}
 				>
@@ -55,7 +59,7 @@ export default function FormBox({
 									{({ field, form }: { field: FieldInputProps<string>; form: FormikState<LoginData> }) => (
 										<FormControl isInvalid={form.errors.password && form.touched.password}>
 											<FormLabel>Password</FormLabel>
-											<Input {...field} />
+											<Input {...field} type="password"/>
 											<FormErrorMessage>{form.errors.password}</FormErrorMessage>
 										</FormControl>
 									)}
@@ -70,13 +74,13 @@ export default function FormBox({
 
 				<Stack color="gray.600" justify="center" spacing="3">
 					<Text as="div" textAlign="center">
-						<span>{title === 'Login' ? "Don't have an account? " : 'Already have an account?'}</span>
-						<Button colorScheme="blue" variant="link">
+						<span>{title === 'Login' ? 'Don\'t have an account?' : 'Already have an account?'} </span>
+						<Button colorScheme="blue" variant="link" onClick={() => router.push(`/${title === 'Login' ? 'register' : 'login'}`)}>
 							{title === 'Login' ? 'Register' : 'Login'}
 						</Button>
 					</Text>
 				</Stack>
 			</Stack>
-		</Center>
+		</Layout>
 	);
 }

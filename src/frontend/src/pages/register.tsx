@@ -9,19 +9,21 @@ export default function LoginPage() {
 	const router = useRouter();
 	const toast = useToast();
 
-	const handleLogin = async (data: LoginData) => {
+	const handleRegister = async (data: LoginData) => {
 		try {
-			const loginData = await fetchAPI<UserData>('/auth/login', {
+            console.log(data);
+
+			const registerData = await fetchAPI<UserData>('/auth/register', {
 				method: 'POST',
 				body: JSON.stringify(data)
 			});
 
-			setCurrentUser(loginData);
-			saveUserState(loginData);
+			setCurrentUser(registerData);
+			saveUserState(registerData);
 
 			toast({
 				title: 'Success!',
-				description: 'You have been logged in.',
+				description: 'You have been successfully registered.',
 				status: 'success',
 				position: 'top',
 				isClosable: true
@@ -30,16 +32,16 @@ export default function LoginPage() {
 			void router.push('/');
 		} catch (e) {
 			toast({
-				title: 'Unable to log in.',
-				description: 'Your username or password were incorrect.',
+				title: 'Unable to register.',
+				description: (e as Error).message,
 				status: 'error',
 				position: 'top',
 				isClosable: true
 			});
 
-			console.log((e as Error).stack);
+            console.log((e as Error).stack);
 		}
 	};
 
-	return (<FormBox onSubmit={handleLogin} title="Login" />);
+	return (<FormBox onSubmit={handleRegister} title="Register" />);
 }

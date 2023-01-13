@@ -24,7 +24,7 @@ const sql = new Database(join(__dirname, '..', 'data', 'database.sqlite'));
 sql.pragma('journal_mode = WAL');
 sql.prepare(
 	`CREATE TABLE IF NOT EXISTS users(
-	id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT
+	id INTEGER PRIMARY KEY NOT NULL,
 	username TEXT NOT NULL,
 	password TEXT NOT NULL
 )`
@@ -84,7 +84,7 @@ async function init() {
 		}
 	}
 
-	log(`Loaded ${loaded.length} routes:\n\n${loaded.map((r) => `\`${r}\``).join('\n')}`);
+	log(`Loaded ${loaded.length} routes:\n\n${loaded.join('\n')}`);
 }
 
 void init().catch((e) => log(e, 'error'));

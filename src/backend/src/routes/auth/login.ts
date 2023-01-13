@@ -28,7 +28,7 @@ export default class implements Route {
             };
 
             res.cookie(COOKIE_NAME, encryptSession(session), { maxAge: COOKIE_EXPIRES_IN, httpOnly: true, path: '/' });
-            res.send(200, { ...data });
+            res.send(200, session);
         } else {
             res.send(400, { error: 'Missing parameters' });
         }
