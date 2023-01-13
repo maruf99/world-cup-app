@@ -1,15 +1,21 @@
 {
 	"root": true,
 	"extends": [
-        "neon/common",
+		"neon/common",
 		"neon/browser",
+		"neon/node",
+		"neon/typescript",
+		"neon/react",
 		"neon/jsx",
-        "neon/node",
-        "neon/react",
-		"neon/prettier",
-        "neon/typescript"
+		"neon/next",
+		"neon/prettier"
     ],
+	
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	},
 	"rules": {
+		"semi": "error",
 		"radix": "off",
 		"no-duplicate-imports": "off",
 		"spaced-comment": "off",
@@ -26,7 +32,14 @@
 		"no-negated-condition": "off",
 		"func-name-matching": "off",
 		"curly": "error",
-		"import/no-anonymous-default-export": "off",
+		"no-restricted-globals": "off",
+		"id-length": "off",
+		"no-lonely-if": "off",
+		"prefer-named-capture-group": "off",
+		"no-undef": "error",
+		"no-param-reassign": "off",
+		"typescript-sort-keys/string-enum": "off",
+		"typescript-sort-keys/interface": "off",
 		"@typescript-eslint/ban-ts-comment": "off",
 		"@typescript-eslint/consistent-type-imports": "error",
 		"@typescript-eslint/no-base-to-string": "off",
@@ -42,6 +55,24 @@
 		"@typescript-eslint/no-unnecessary-condition": "off",
 		"@typescript-eslint/restrict-template-expressions": "off",
 		"@typescript-eslint/prefer-optional-chain": "off",
-		"@typescript-eslint/no-dynamic-delete": "off"
+		"@typescript-eslint/no-dynamic-delete": "off",
+		"@typescript-eslint/quotes": "off",
+		"@typescript-eslint/prefer-nullish-coalescing": "off",
+		"@typescript-eslint/consistent-type-definitions": "off",
+		"@typescript-eslint/method-signature-style": "off",
+		"@typescript-eslint/sort-type-union-intersection-members": "off",
+		"@typescript-eslint/no-confusing-void-expression": "off",
+		"import/no-anonymous-default-export": "off",
+		"import/first": "off",
+		"import/extensions": "off",
+		"import/order": "off",
+		"n/prefer-global/process": "off",
+		"n/prefer-global/buffer": "off",
+		"n/callback-return": "off",
+		"unicorn/prefer-string-replace-all": "off",
+		"unicorn/catch-error-name": "off",
+		"unicorn/better-regex": "off",
+		"unicorn/numeric-separators-style": "off",
+		"react/jsx-sort-props": "off"
 	}
 }

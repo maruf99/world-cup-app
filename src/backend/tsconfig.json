@@ -1,9 +1,12 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"outDir": "dist",
 		"baseUrl": ".",
-		"importHelpers": true
+		"importHelpers": true,
+		"paths": {
+			"#util/*": ["src/util/*"]
+		}
 	},
 	"include": ["src"]
 }
