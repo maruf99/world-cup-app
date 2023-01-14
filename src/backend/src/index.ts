@@ -19,7 +19,7 @@ import { container } from 'tsyringe';
 import { STATUS_CODES } from 'node:http';
 import Database from 'better-sqlite3';
 
-const sql = new Database(join(__dirname, '..', 'data', 'database.sqlite'));
+const sql = new Database(join(__dirname, '..', 'database', 'database.sqlite'));
 
 sql.pragma('journal_mode = WAL');
 sql.prepare(

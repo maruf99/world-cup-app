@@ -1,11 +1,12 @@
-import Layout from "@/components/Layout";
-import { clearUserState, setUser, useUser } from "@/util/util";
-import { Heading } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import Layout from '@/components/Layout';
+import Loading from '@/components/Loading';
+import { clearUserState, setUser, useUser } from '@/util/util';
+import { Heading } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export default function Home() {
-    const user = useUser();
+	const user = useUser();
 	const setCurrentUser = setUser();
 	const router = useRouter();
 
@@ -26,7 +27,13 @@ export default function Home() {
 
 	return (
 		<Layout>
-			<Heading as="h1" color="white">{user ? `Welcome ${user.username}` : 'Redirecting...'}</Heading>
+			{user ? (
+				<Heading as="h1" color="white">
+					{`Welcome ${user.username}`}
+				</Heading>
+			) : (
+				<Loading color="white"/>
+			)}
 		</Layout>
 	);
 }

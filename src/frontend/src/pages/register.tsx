@@ -11,8 +11,6 @@ export default function LoginPage() {
 
 	const handleRegister = async (data: LoginData) => {
 		try {
-            console.log(data);
-
 			const registerData = await fetchAPI<UserData>('/auth/register', {
 				method: 'POST',
 				body: JSON.stringify(data)
@@ -39,7 +37,7 @@ export default function LoginPage() {
 				isClosable: true
 			});
 
-            console.log((e as Error).stack);
+			console.log((e as Error).stack);
 		}
 	};
 

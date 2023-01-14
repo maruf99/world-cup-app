@@ -28,8 +28,8 @@ export default function FormBox({
 
 	return (
 		<Layout>
-			<Stack bg="whiteAlpha.900" boxShadow="md" minWidth="500" p="20" paddingTop="10" rounded="lg">
-				<Image marginBottom="2" maxWidth="100px" mx="auto" src="/world-cup-logo.svg" />
+			<Stack bg="whiteAlpha.900" boxShadow="md" minWidth={500} p={20} paddingTop={10} rounded="lg">
+				<Image maxWidth="300px" mx="auto" my={5} src="/world-cup-logo.svg" />
 
 				<Heading as="h1">{title}</Heading>
 
@@ -44,7 +44,7 @@ export default function FormBox({
 				>
 					{({ isSubmitting }) => (
 						<Form>
-							<Stack my="4" spacing="6">
+							<Stack my={4} spacing={6}>
 								<Field name="username">
 									{({ field, form }: { field: FieldInputProps<string>; form: FormikState<LoginData> }) => (
 										<FormControl isInvalid={form.errors.username && form.touched.username}>
@@ -72,7 +72,7 @@ export default function FormBox({
 					)}
 				</Formik>
 
-				<Stack color="gray.600" justify="center" spacing="3">
+				<Stack color="gray.600" justify="center" spacing={3}>
 					<Text as="div" textAlign="center">
 						<span>{title === 'Login' ? 'Don\'t have an account?' : 'Already have an account?'} </span>
 						<Button colorScheme="blue" variant="link" onClick={() => router.push(`/${title === 'Login' ? 'register' : 'login'}`)}>
