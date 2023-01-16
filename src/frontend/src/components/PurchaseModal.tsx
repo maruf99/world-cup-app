@@ -23,7 +23,7 @@ export default function PurchaseModal({
 				<ModalHeader fontSize="3xl" fontWeight="bold">Purchase</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
-					Are you sure you want to purchase {amount > 1 ? 'these' : 'this'} {amount} ticket{amount > 1 ? 's' : ''}? The total price is <span style={{ fontWeight: 'bold' }}>{price}</span>
+					Are you sure you want to purchase {amount > 1 ? 'these' : 'this'} {amount} ticket{amount > 1 ? 's' : ''}? The total price is <span style={{ fontWeight: 'bold' }}>{price}</span>.
 				</ModalBody>
 
 				<ModalFooter>

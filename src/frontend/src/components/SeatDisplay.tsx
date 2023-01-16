@@ -2,7 +2,7 @@ import { type GameData, generateSeats, getCountryFlag, findGame, SeatType, type 
 import { Box, HStack, Text, VStack, Heading, Image } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Seat from '@/components/Seat';
+import Seat, { SeatKey } from '@/components/Seat';
 import Loading from '@/components/Loading';
 import PurchaseButton from '@/components/PurchaseButton';
 import { useQueryGameTickets } from '@/util/queries';
@@ -37,7 +37,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 		if (router.isReady) {
 			setSeats(generateSeats(tickets));
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.isReady, tickets]);
 
 	const seatRows = [];
@@ -86,7 +86,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 
 	return game ? (
 		<Box>
-			<VStack spacing={10}>
+			<VStack spacing={6}>
 				<VStack spacing={3}>
 					<HStack spacing={3}>
 						<Country name={game.teams[0]} />
@@ -100,6 +100,18 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 						{game.city}, {game.state}
 					</Heading>
 				</VStack>
+				<HStack spacing={5}>
+					{['empty', 'selected', 'reserved'].map((str, index) => {
+						return (
+							<HStack key={str}>
+								<SeatKey type={index + 1} />
+								<Text fontSize="sm" fontWeight="bold">
+									{str.replace(/[A-Za-zÀ-ÖØ-öø-ÿ]\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase())} Seat
+								</Text>
+							</HStack>
+						);
+					})}
+				</HStack>
 				<VStack spacing={4}>
 					{seatRows.map((x, i) => (
 						<HStack key={i} spacing={3}>

@@ -33,7 +33,7 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
 			onSuccess: () => {
 				toast({
 					title: 'Congratulations!',
-					description: `You have just bought ${selected.length} tickets.`,
+					description: `You have just bought ${selected.length} ticket${selected.length > 1 ? 's' : ''}.`,
 					status: 'success',
 					position: 'top',
 					isClosable: true
