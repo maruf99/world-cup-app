@@ -9,7 +9,8 @@ import type { MouseEventHandler } from 'react';
 const NavPages = [
 	{ name: 'Home', path: '/' },
 	{ name: 'My Tickets', path: '/tickets' },
-	{ name: 'Book Tickets', path: '/games' }
+	{ name: 'Book Tickets', path: '/games' },
+	{ name: 'Contact', path: '/contact' }
 ];
 
 function NavTab({ page }: { page: { name: string; path: string } }) {

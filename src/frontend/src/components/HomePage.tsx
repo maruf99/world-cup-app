@@ -4,7 +4,8 @@ import NextLink from 'next/link';
 
 const ActionItems = [
 	{ name: 'View My Tickets', path: '/tickets' },
-	{ name: 'Book Tickets', path: '/games' }
+	{ name: 'Book Tickets', path: '/games' },
+	{ name: 'Contact Us', path: 'contact' }
 ];
 
 function ActionItem({ href, text }: { href: string; text: string }) {

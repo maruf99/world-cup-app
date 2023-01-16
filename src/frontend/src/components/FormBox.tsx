@@ -8,7 +8,6 @@ import * as yup from 'yup';
 
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
-
 const validator = (field: string) => {
 	const text = `${field} must be between 5 and 20 characters`;
 	return yup.string().min(5, text).max(20, text).required(`${field} is required.`);

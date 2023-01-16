@@ -1,12 +1,20 @@
 import FormBox from '@/components/FormBox';
-import { fetchAPI, saveUserState, setUser, type LoginData, type UserData } from '@/util/util';
+import { fetchAPI, saveUserState, setUser, useUser, type LoginData, type UserData } from '@/util/util';
 import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
-	const setCurrentUser = setUser();
+	const user = useUser();
 	const router = useRouter();
+	const setCurrentUser = setUser();
 	const toast = useToast();
+
+	useEffect(() => {
+		if (user && router.isReady) {
+			void router.push('/');
+		}
+	});
 
 	const handleLogin = async (data: LoginData) => {
 		try {

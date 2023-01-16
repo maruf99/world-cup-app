@@ -36,11 +36,11 @@ We used the extracted data to create instances of the Game and Country classes,
 in order to represent the data.
 */
 
-const MATCHES_PATH = join(__dirname, '..', '..', 'games.txt');
+const GAMES_PATH = join(__dirname, '..', '..', 'games.txt');
 const PARSING_REGEX = /(?:~\s)(.*),\s(.*)\n(?:@\s)(.*)\n(?:-\s)(.*),\s(.*)\n(?:\$\s)(.*)/gmi;
 
 export async function parseGames() {
-	const data = await readFile(MATCHES_PATH, { encoding: 'utf8' });
+	const data = await readFile(GAMES_PATH, { encoding: 'utf8' });
 	const [, ...groups] = data.split('# ');
 
 	const final = [];

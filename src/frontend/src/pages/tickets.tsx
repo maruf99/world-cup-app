@@ -1,10 +1,12 @@
 import ErrorText from '@/components/ErrorText';
-import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import TicketDisplay from '@/components/TicketDisplay';
 import { useQueryUserTickets } from '@/util/queries';
 import { useUser } from '@/util/util';
 import { Heading, VStack } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+
+const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
 export default function TicketsPage() {
 	const user = useUser();

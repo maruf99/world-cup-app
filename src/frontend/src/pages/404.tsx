@@ -1,5 +1,7 @@
-import Layout from '@/components/Layout';
 import { Heading, VStack } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+
+const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
 export default function NotFoundPage() {
 	return (

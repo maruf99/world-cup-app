@@ -1,5 +1,4 @@
 import HomePage from '@/components/HomePage';
-// import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import { clearUserState, setUser, useUser } from '@/util/util';
 import dynamic from 'next/dynamic';
