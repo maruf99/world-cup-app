@@ -10,7 +10,7 @@ declare module 'http' {
 
 export const COOKIE_NAME = 'WORLD_CUP_AUTH';
 
-export const COOKIE_EXPIRES_IN = 2 * 3600; // Number of hours converted to seconds
+export const COOKIE_EXPIRES_IN = 4 * 3600; // Number of hours converted to seconds
 
 export const ALGORITHM = 'aes-256-cbc';
 

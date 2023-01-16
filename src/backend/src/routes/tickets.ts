@@ -20,8 +20,9 @@ export default class TicketsRoute implements Route {
 
 	public delete(req: Request, res: Response) {
 		const id = Number.parseInt(req.body.id as string);
+		const user = req.body.user as string;
 
-		const { changes } = this.sql.prepare('DELETE FROM tickets WHERE id = ?').run(id);
+		const { changes } = this.sql.prepare('DELETE FROM tickets WHERE id = ? AND owner = ?').run(id, user);
 
         if (changes > 0) {
             return res.send(200, { success: true });
@@ -47,7 +48,8 @@ export default class TicketsRoute implements Route {
 				city: 'string',
 				game_id: 'string',
 				state: 'string',
-				venue: 'string'
+				venue: 'string',
+				match: 'string'
 			};
 
 			for (const [key, val] of Object.entries(requiredFields)) {
@@ -60,12 +62,12 @@ export default class TicketsRoute implements Route {
 
 			const { changes } = this.sql
 				.prepare(
-					'INSERT INTO tickets (owner, created, row, column, price, country, city, game_id, state, venue) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+					'INSERT INTO tickets (owner, created, row, column, price, country, city, game_id, state, venue, match) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
 				)
-				.run(body.owner, body.created, body.row, body.column, body.price, body.country, body.city, body.game_id, body.state, body.venue);
+				.run(body.owner, body.created, body.row, body.column, body.price, body.country, body.city, body.game_id, body.state, body.venue, body.match);
 
 			if (changes < 1) {
-                return res.send(500, { message: 'An error ocurred. Please try again later.' });
+                return res.send(500, { message: 'An error occurred. Please try again later.' });
 			}
 		}
 

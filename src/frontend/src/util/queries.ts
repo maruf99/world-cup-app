@@ -17,6 +17,7 @@ export interface Ticket {
 	game_id: string;
 	state: string;
 	venue: string;
+	match: string;
 }
 
 export type TicketPayload = Omit<Ticket, 'id' | 'created'>;
@@ -25,8 +26,8 @@ export function useQueryGameTickets(city: string, enabled: boolean) {
 	return useQuery<Ticket[]>(['tickets', city], () => fetchAPI<Ticket[]>(`/tickets?id=${city}`), { enabled });
 }
 
-export function useQueryUserTickets(user: string) {
-	return useQuery<Ticket[]>(['tickets', user], () => fetchAPI<Ticket[]>(`/tickets?user=${user}`));
+export function useQueryUserTickets(user: string, enabled: boolean) {
+	return useQuery<Ticket[]>(['tickets', user], () => fetchAPI<Ticket[]>(`/tickets?user=${user}`), { enabled });
 }
 
 export function useMutationInsertTickets() {
@@ -50,7 +51,7 @@ export function useMutationInsertTickets() {
 export function useMutationDeleteTicket() {
 	const client = useQueryClient();
 
-	return useMutation<unknown, unknown, { id: number }>(
+	return useMutation<unknown, unknown, { id: number; user: string }>(
 		async (payload) => {
 			return fetchAPI(`/tickets`, {
 				method: 'DELETE',

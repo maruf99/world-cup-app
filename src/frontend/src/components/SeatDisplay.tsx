@@ -6,6 +6,7 @@ import Seat, { SeatKey } from '@/components/Seat';
 import Loading from '@/components/Loading';
 import PurchaseButton from '@/components/PurchaseButton';
 import { useQueryGameTickets } from '@/util/queries';
+import ErrorText from '@/components/ErrorText';
 
 function Country({ name }: { name: string }) {
 	return (
@@ -37,7 +38,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 		if (router.isReady) {
 			setSeats(generateSeats(tickets));
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		
 	}, [router.isReady, tickets]);
 
 	const seatRows = [];
@@ -81,7 +82,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 	}
 
 	if (error) {
-		return <Heading size="4xl">An error occurred.</Heading>;
+		return <ErrorText />;
 	}
 
 	return game ? (
@@ -121,7 +122,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 				</VStack>
 				<PurchaseButton seats={seats} game={game} />
 			</VStack>
-			<Text fontSize="4xl" fontWeight="bold" textAlign="center" position="absolute" top="52.3%" left="47.8%" zIndex={999}>
+			<Text fontSize="4xl" fontWeight="bold" textAlign="center" position="absolute" top="55.3%" left="47.8%" zIndex={999}>
 				Field
 			</Text>
 		</Box>

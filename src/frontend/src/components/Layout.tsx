@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 
 const NavBar = dynamic(() => import('./NavBar'), { ssr: false });

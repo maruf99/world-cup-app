@@ -23,7 +23,8 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
 				city: game.city,
 				game_id: game.id,
 				state: game.state,
-				venue: game.venue
+				venue: game.venue,
+				match: game.teams.join(' vs. ')
 			};
 
 			return payload;

@@ -43,7 +43,8 @@ sql.prepare(
 	city TEXT NOT NULL,
 	game_id TEXT NOT NULL,
 	state TEXT NOT NULL,
-	venue TEXT NOT NULL
+	venue TEXT NOT NULL,
+	match TEXT NOT NULL
 	)`
 ).run();
 
