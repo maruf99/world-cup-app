@@ -9,7 +9,11 @@
   "scripts": {
     "build:api": "cd src/backend && npm run build",
     "start:api": "cd src/backend && node .",
-    "start:site": "cd src/frontend && npm run dev"
+    "start:site": "cd src/frontend && npm run dev",
+    "start": "pm2 start ecosystem.config.js",
+    "restart": "pm2 restart ecosystem.config.js",
+    "restart:api": "pm2 restart ecosystem.config.js --only api",
+    "restart:site": "pm2 restart ecosystem.config.js --only site"
   },
   "author": "maruf99",
   "license": "MIT",
