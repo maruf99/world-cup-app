@@ -1,7 +1,7 @@
 {
   "name": "world-cup-app",
   "version": "1.0.0",
-  "description": "World Cup booking system app",
+  "description": "A demo booking system application based around the 2026 World Cup.",
   "private": true,
   "workspaces": [
     "src/*"

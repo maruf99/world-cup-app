@@ -28,10 +28,11 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 				<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
 
-				<meta name="theme-color" content="#f2b139" />
+				<meta name="theme-color" content="#002d4c" />
 				<meta name="og:site_name" content="World Cup 2026" />
 				<meta property="og:title" content="World Cup App" />
-				<meta property="og:description" content="Application to book tickets for World Cup 2026" />
+				<meta property="og:description" content="A demo booking system application based around the 2026 World Cup." />
+				<meta property="og:image" content="https://worldcup.marufdev.me/thumbnail.png" />
 				<meta property="og:type" content="website" />
 			</Head>
 			<UserProvider>
