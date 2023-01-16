@@ -5,7 +5,7 @@ import 'reflect-metadata';
 
 import type { Route } from '#util/http';
 import { extensions, Methods } from '#util/http';
-import { log } from '#util/util';
+import { log, parseGames } from '#util/util';
 import { auth, checkAuth } from '#util/auth';
 
 import { json } from 'body-parser';
@@ -22,12 +22,29 @@ import Database from 'better-sqlite3';
 const sql = new Database(join(__dirname, '..', 'database', 'database.sqlite'));
 
 sql.pragma('journal_mode = WAL');
+
 sql.prepare(
 	`CREATE TABLE IF NOT EXISTS users(
 	id INTEGER PRIMARY KEY NOT NULL,
 	username TEXT NOT NULL,
 	password TEXT NOT NULL
-)`
+	)`
+).run();
+
+sql.prepare(
+	`CREATE TABLE IF NOT EXISTS tickets(
+	id INTEGER PRIMARY KEY NOT NULL,
+	owner TEXT NOT NULL,
+	created INTEGER NOT NULL,
+	row TEXT NOT NULL,
+	column INTEGER NOT NULL,
+	price REAL NOT NULL,
+	country TEXT NOT NULL,
+	city TEXT NOT NULL,
+	game_id TEXT NOT NULL,
+	state TEXT NOT NULL,
+	venue TEXT NOT NULL
+	)`
 ).run();
 
 container.register('sql', { useValue: sql });
@@ -63,6 +80,10 @@ const routes = readdirp(join(__dirname, 'routes'), { fileFilter: '*.js' });
 
 async function init() {
 	const loaded = [];
+
+	const gameData = await parseGames();
+
+	container.register('gameData', { useValue: gameData });
 
 	for await (const file of routes) {
 		let routePath = file.path

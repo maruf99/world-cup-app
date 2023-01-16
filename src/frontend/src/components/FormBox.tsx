@@ -1,11 +1,13 @@
-import type { LoginData } from '@/util/interfaces';
-import { wait } from '@/util/util';
+import { wait, type LoginData } from '@/util/util';
 import { Button, FormControl, FormErrorMessage, FormLabel, Heading, Image, Input, Stack, Text } from '@chakra-ui/react';
 import type { FieldInputProps, FormikState } from 'formik';
 import { Field, Form, Formik } from 'formik';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
-import Layout from './Layout';
+
+const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
+
 
 const validator = (field: string) => {
 	const text = `${field} must be between 5 and 20 characters`;
@@ -37,6 +39,10 @@ export default function FormBox({
 					initialValues={{ username: '', password: '' }}
 					onSubmit={async (data, { setSubmitting }) => {
 						await wait(1000);
+
+						data.username = data.username?.replaceAll(/\s/g, '');
+						data.password = data.password?.replaceAll(/\s/g, '');
+
 						await onSubmit(data);
 						setSubmitting(false);
 					}}

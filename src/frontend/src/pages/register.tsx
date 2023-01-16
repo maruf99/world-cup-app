@@ -1,6 +1,5 @@
-import type { LoginData, UserData } from '@/util/interfaces';
 import FormBox from '@/components/FormBox';
-import { fetchAPI, saveUserState, setUser } from '@/util/util';
+import { fetchAPI, saveUserState, setUser, type LoginData, type UserData } from '@/util/util';
 import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
 

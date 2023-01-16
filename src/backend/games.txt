@@ -1,0 +1,82 @@
+# United States
+~ East Rutherford, New Jersey
+@ MetLife Stadium
+- United States, Portugal
+$ 688
+
+~ Dallas, Texas
+@ AT&T Stadium
+- Australia, Spain
+$ 766
+
+~ Kansas City, Kansas
+@ Arrowhead Stadium
+- Switzerland, Belgium
+$ 543
+
+~ Houston, Texas
+@ NRG Stadium
+- Poland, Peru
+$ 752
+
+~ Atlanta, Georgia
+@ Mercedes-Benz Stadium
+- England, Croatia
+$ 676
+
+~ Los Angeles, California
+@ SoFi Stadium
+- Ukraine, Morocco
+$ 546
+
+~ Philadelphia, Pennsylvania
+@ Lincoln Financial Field
+- Netherlands, Denmark
+$ 679
+
+~ Seattle, Washington
+@ Lumen Field
+- Argentina, Colombia
+$ 717
+
+~ San Francisco, California
+@ Levi's Stadium
+- Sweden, Germany
+$ 514
+
+~ Boston, Massachusetts
+@ Gillette Stadium
+- Brazil, Costa Rica
+$ 678
+
+~ Miami, Florida
+@ Hard Rock Stadium
+- Ecuador, Jamaica
+$ 720
+
+# Canada
+~ Toronto, Ontario
+@ BMO Field
+- Canada, France
+$ 704
+
+~ Vancouver, British Columbia
+@ BC Place
+- Egypt, Iran
+$ 594
+
+# Mexico
+~ Mexico City, 
+@ Estadio Azteca
+- Mexico, Chile
+$ 624
+
+~ Monterrey, Nuevo León
+@ Estadio BBVA
+- Uruguay, Iraq
+$ 777
+
+~ Guadalajara, Jalisco
+@ Estadio Akron
+- Senegal, Japan
+$ 687

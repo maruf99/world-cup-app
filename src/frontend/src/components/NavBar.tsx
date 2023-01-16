@@ -1,5 +1,6 @@
 import { CloseIcon, HamburgerIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex, HStack, IconButton, Image, Link, Stack, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import styles from '@/styles/NavBar.module.css';
 import { clearUserState, fetchAPI, setUser, useUser } from '@/util/util';
 import { useRouter } from 'next/router';
@@ -7,34 +8,35 @@ import type { MouseEventHandler } from 'react';
 
 const NavPages = [
 	{ name: 'Home', path: '/' },
-	{ name: 'My Tickets', path: '/my-tickets' },
-	{ name: 'Book Tickets', path: '/reserve' }
+	{ name: 'My Tickets', path: '/tickets' },
+	{ name: 'Book Tickets', path: '/games' }
 ];
 
 function NavTab({ page }: { page: { name: string; path: string } }) {
 	return (
-		<Link
-			px={2}
-			py={3}
-			rounded="md"
-			_hover={{
-				textDecoration: 'none',
-				bg: 'blue.300'
-			}}
-			href={page.path}
-		>
-			{page.name}
-		</Link>
+		<NextLink href={page.path}>
+			<Link
+				px={2}
+				py={3}
+				rounded="md"
+				_hover={{
+					textDecoration: 'none',
+					bg: 'blue.300'
+				}}
+			>
+				{page.name}
+			</Link>
+		</NextLink>
 	);
 }
 
 export default function NavBar() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-    const user = useUser();
+	const user = useUser();
 	const setCurrentUser = setUser();
 	const router = useRouter();
 
-    const handleLogout: MouseEventHandler<HTMLButtonElement> = async (e) => {
+	const handleLogout: MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
 
 		await fetchAPI('/auth/logout', { method: 'POST' });
@@ -58,8 +60,8 @@ export default function NavBar() {
 
 				<HStack spacing={8} alignItems="center">
 					<Box>
-                        <Image h={12} src={useBreakpointValue({ base: '/world-cup-icon.svg', md: '/world-cup-logo.svg' })}/>
-                    </Box>
+						<Image h={12} src={useBreakpointValue({ base: '/world-cup-icon.svg', md: '/world-cup-logo.svg' })} />
+					</Box>
 					<HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
 						{NavPages.map((page) => (
 							<NavTab key={page.name} page={page} />
@@ -67,11 +69,13 @@ export default function NavBar() {
 					</HStack>
 				</HStack>
 
-				{user && <Flex alignItems="center">
-					<Button variant="solid" colorScheme="red" size="md" mr={4} rightIcon={<ArrowForwardIcon />} onClick={handleLogout}>
-						Log Out
-					</Button>
-				</Flex>}
+				{user ? (
+					<Flex alignItems="center">
+						<Button variant="solid" colorScheme="red" size="md" mr={4} rightIcon={<ArrowForwardIcon />} onClick={handleLogout}>
+							Log Out
+						</Button>
+					</Flex>
+				) : null}
 			</Flex>
 
 			{isOpen ? (

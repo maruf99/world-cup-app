@@ -1,8 +1,23 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import Head from 'next/head';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { UserProvider } from '@/util/util';
+
+const client = new QueryClient();
+
+const theme = extendTheme({
+	components: {
+		Modal: {
+			baseStyle: {
+				dialog: {
+					bg: 'blue.200'
+				}
+			}
+		}
+	}
+});
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -20,9 +35,11 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta property="og:type" content="website" />
 			</Head>
 			<UserProvider>
-				<ChakraProvider>
-					<Component {...pageProps} />
-				</ChakraProvider>
+				<QueryClientProvider client={client}>
+					<ChakraProvider theme={theme}>
+						<Component {...pageProps} />
+					</ChakraProvider>
+				</QueryClientProvider>
 			</UserProvider>
 		</>
 	);

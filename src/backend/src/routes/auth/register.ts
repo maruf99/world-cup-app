@@ -7,10 +7,10 @@ import type { User } from "#util/util";
 import type { Session } from "#util/auth";
 
 @injectable()
-export default class implements Route {
+export default class RegisterRoute implements Route {
     public constructor(@inject('sql') private readonly sql: Database) {}
 
-	public async post(req: Request, res: Response) {
+	public post(req: Request, res: Response) {
         const { username, password } = req.body as User;
 
         if (username?.length && password?.length) {

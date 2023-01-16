@@ -1,9 +1,12 @@
-import Layout from '@/components/Layout';
+import HomePage from '@/components/HomePage';
+// import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import { clearUserState, setUser, useUser } from '@/util/util';
-import { Heading } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+
+const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
 export default function Home() {
 	const user = useUser();
@@ -27,13 +30,7 @@ export default function Home() {
 
 	return (
 		<Layout>
-			{user ? (
-				<Heading as="h1" color="white">
-					{`Welcome ${user.username}`}
-				</Heading>
-			) : (
-				<Loading color="white"/>
-			)}
+			{user ? <HomePage /> : <Loading color="white"/>}
 		</Layout>
 	);
 }
