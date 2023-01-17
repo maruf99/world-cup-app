@@ -4,6 +4,8 @@ import type { Ticket } from './queries';
 
 const STORAGE_KEY = 'user_data';
 
+export const BOX_SHADOW = '0 2px 5px rgb(0 0 0 / 0.49)';
+
 export interface LoginData {
 	username: string;
 	password: string;
@@ -124,6 +126,11 @@ function swap(list: any[], i: number, j: number) {
 	list[i] = list[j];
 	list[j] = temp;
 }
+
+export interface Seat {
+	row: string;
+	column: number
+};
 
 export function calcPrice(seats: any[], game: Game) {
 	return `$${seats.length * game.price}.00`;

@@ -1,4 +1,4 @@
-import { type GameData, generateSeats, getCountryFlag, findGame, SeatType, type Game } from '@/util/util';
+import { type GameData, generateSeats, getCountryFlag, findGame, SeatType, type Game, BOX_SHADOW } from '@/util/util';
 import { Box, HStack, Text, VStack, Heading, Image } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -86,7 +86,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 	}
 
 	return game ? (
-		<Box>
+		<Box py={6} px={10} bgColor="blue.200" rounded="xl" boxShadow={BOX_SHADOW}>
 			<VStack spacing={6}>
 				<VStack spacing={3}>
 					<HStack spacing={3}>

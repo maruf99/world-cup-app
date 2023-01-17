@@ -1,4 +1,5 @@
 import { type Ticket, useMutationDeleteTicket } from '@/util/queries';
+import { BOX_SHADOW } from '@/util/util';
 import {
 	Box,
 	Button,
@@ -39,7 +40,7 @@ export default function TicketDisplay({ tickets }: { tickets: Ticket[] }) {
 			}
 		);
 
-        onClose();
+		onClose();
 	};
 
 	return (
@@ -47,36 +48,33 @@ export default function TicketDisplay({ tickets }: { tickets: Ticket[] }) {
 			{tickets.map((ticket) => {
 				return (
 					<Fragment key={ticket.id}>
-						<Box width="300px" height="250px" p={6} rounded="xl" bgColor="blue.300" boxShadow="md">
+						<VStack spacing={3} width="300px" height="auto" p={6} rounded="xl" bgColor="blue.200" boxShadow={BOX_SHADOW}>
 							<VStack spacing={1} alignItems="start">
 								<Text fontSize="xl" fontWeight="bold">
 									{ticket.match}
 								</Text>
-								<Text fontSize="sm" fontWeight="bold">
-									Venue: {ticket.venue}
+								<Text fontSize="sm">
+									<span style={{ fontWeight: 'bold' }}>Venue:</span> {ticket.venue}
 								</Text>
-								<Text fontSize="sm" fontWeight="bold">
-									{ticket.city}, {ticket.state}
+								<Text fontSize="sm">
+									<span style={{ fontWeight: 'bold' }}>City:</span> {ticket.city}, {ticket.state}, {ticket.country}
 								</Text>
-                                <Text fontSize="sm" fontWeight="bold">
-									{ticket.country}
-								</Text>
-								<Text fontSize="sm" fontWeight="bold">
-									Seat Location: {ticket.row}
+								<Text fontSize="sm">
+									<span style={{ fontWeight: 'bold' }}>Seat:</span> {ticket.row}
 									{ticket.column}
 								</Text>
-								<Text fontSize="sm" fontWeight="bold">
-									Booked on {new Date(ticket.created).toLocaleString()}
+								<Text fontSize="sm">
+									<span style={{ fontWeight: 'bold' }}>Booking Date:</span> {new Date(ticket.created).toLocaleString()}
 								</Text>
-								<Text fontSize="sm" fontWeight="bold">
-									Amount Paid: ${ticket.price}.00
+								<Text fontSize="sm">
+									<span style={{ fontWeight: 'bold' }}>Amount Paid:</span> ${ticket.price}.00
 								</Text>
-								<Button size="sm" colorScheme="red" isLoading={isLoading} alignSelf="center" onClick={onOpen}>
-									Cancel
-								</Button>
 							</VStack>
-						</Box>
-						<CancelModal isOpen={isOpen} onClose={onClose} isLoading={isLoading} onClick={() => handleDelete(ticket)}/>
+							<Button marginTop="2px" size="sm" colorScheme="red" isLoading={isLoading} alignSelf="center" onClick={onOpen}>
+								Cancel
+							</Button>
+						</VStack>
+						<CancelModal isOpen={isOpen} onClose={onClose} isLoading={isLoading} onClick={() => handleDelete(ticket)} />
 					</Fragment>
 				);
 			})}
