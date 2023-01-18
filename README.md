@@ -22,13 +22,13 @@ JavaScript does not have a separate ArrayList class like Java does. However, its
 
 ### Iteration
 
-When handling arrays, iteration is often used. We iterate through arrays at various points in both the frontend and backend. The primary loop used in our application are `for...of` loops, which are the same thing as Enhanced For Loops in Java. An example of nested for loops can be seen in the aforementioned [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#185). file, with a regular for loop nested inside an enhanced for loop.
+When handling arrays, iteration is often used. We iterate through arrays at various points in both the frontend and backend. The primary loop used in our application are `for...of` loops, which are the same thing as Enhanced For Loops in Java. An example of nested for loops can be seen in the aforementioned [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L185). file, with a regular for loop nested inside an enhanced for loop.
 
 ### Classes/Objects
 
-Classes are primarily used in the backend part of the application. After the data from `games.txt` is parsed, individual Country and Game classes are created for each entry in the data. We use the toJSON method in each class to transform them into JSON compatible objects, so that they can be sent by the API to the website over an HTTP request. The class implementations can be seen in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#185).
+Classes are primarily used in the backend part of the application. After the data from `games.txt` is parsed, individual Country and Game classes are created for each entry in the data. We use the toJSON method in each class to transform them into JSON compatible objects, so that they can be sent by the API to the website over an HTTP request. The class implementations can be seen in [`src/frontend/src/util/structures.ts`](src/frontend/src/util/structures.ts).
 
-Additionally, each API route in the [`src/backend/routes`](src/backend/routes) is its own class. Each of these classes can have their own `get()`, `post()`, `put()`, and `delete()` methods, which correspond to the different types of basic HTTP requests used by the application.
+Additionally, each API route in the [`src/backend/src/routes`](src/backend/src/routes) is its own class. Each of these classes can have their own `get()`, `post()`, `put()`, and `delete()` methods, which correspond to the different types of basic HTTP requests used by the application.
 
 ### Searching Algorithms
 
