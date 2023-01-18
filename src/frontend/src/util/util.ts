@@ -150,9 +150,9 @@ export function calcPrice(seats: SeatData[], game: Game) {
 export function calcSeatPrice(seat: SeatData, basePrice: Game['price']) {
 	const first =
 		([rows[1], rows[rows.length - 1]].includes(seat.row) && seat.column >= 3 && seat.column <= 16) || // check inner rows
-		(![rows[0], rows[rows.length]].includes(seat.row) && [3, 15].includes(seat.column)); // check inner columns
+		(![rows[0], rows[rows.length - 1]].includes(seat.row) && [3, 15].includes(seat.column)); // check inner columns
 
-	const second = ([rows[0], rows[rows.length]].includes(seat.row) && (seat.column >= 2 && seat.column <= 17)) || [2, 17].includes(seat.column);
+	const second = ([rows[0], rows[rows.length - 1]].includes(seat.row) && (seat.column >= 2 && seat.column <= 17)) || [2, 17].includes(seat.column);
 
 	const third = [1, 18].includes(seat.column);
 
