@@ -34,5 +34,7 @@ Additionally, each API route in the [`src/backend/src/routes`](src/backend/src/r
 
 ### Sorting & Recursion Algorithms
 
+In order to use the Binary Search algorithm on an array, the array must already be sorted. In order to accomplish this, the sorting algorithm we made use of in this application is Quick Sort, a "divide and conquer" algorithm that works by picking an element as a pivot, and partioning the array to be searched around this pivot. Our implementation of Quick Sort can be seen in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L98), where the main `quickSort()`, `partition()`, and `swap()` functions are defined.
+
 ### Other
 We've used various other concepts in addition to the aforementioned ones, such as switch/case decisional structures, try/catch blocks etc.
