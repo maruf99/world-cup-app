@@ -1,4 +1,4 @@
-![](https://worldcup.marufdev.me/world-cup-logo.svg)
+![](https://worldcup.marufdev.me/logo.svg)
 
 ## Overview
 
@@ -23,3 +23,5 @@ In this project, we made sure to use concepts from everything we've learned in t
 ### Sorting Algorithms
 
 ### Recursion Algorithms
+
+### Other

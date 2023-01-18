@@ -54,7 +54,7 @@ export default function Contact() {
     return (
 		<Layout>
 			<Stack bg="whiteAlpha.900" boxShadow="md" minWidth={600} p={20} paddingTop={10} rounded="lg">
-				<Image maxWidth="300px" mx="auto" my={5} src="/world-cup-logo.svg" />
+				<Image maxWidth="300px" mx="auto" my={5} src="/logo.svg" />
 
 				<Heading size="xl">Contact</Heading>
                 <Heading size="sm">Send us a message!</Heading>

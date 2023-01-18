@@ -61,7 +61,7 @@ export default function NavBar() {
 
 				<HStack spacing={8} alignItems="center">
 					<Box>
-						<Image h={12} src={useBreakpointValue({ base: '/world-cup-icon.svg', md: '/world-cup-logo.svg' })} />
+						<Image h={12} src={useBreakpointValue({ base: '/icon.svg', md: '/logo.svg' })} />
 					</Box>
 					<HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
 						{NavPages.map((page) => (
