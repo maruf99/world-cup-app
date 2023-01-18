@@ -1,17 +1,20 @@
 import { BOX_SHADOW, useUser } from '@/util/util';
+import { EmailIcon, PlusSquareIcon, ViewIcon } from '@chakra-ui/icons';
 import { Box, Heading, HStack, Image, Link, Text, VStack } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
+const BOX_SIZE = '30px';
+
 const ActionItems = [
-	{ name: 'View Your Tickets', path: '/tickets' },
-	{ name: 'Book Tickets', path: '/games' },
-	{ name: 'Contact Us', path: 'contact' }
+	{ name: 'View Your Tickets', path: '/tickets', icon: <ViewIcon boxSize={BOX_SIZE} /> },
+	{ name: 'Book Tickets', path: '/games', icon: <PlusSquareIcon boxSize={BOX_SIZE} /> },
+	{ name: 'Contact Us', path: 'contact', icon: <EmailIcon boxSize={BOX_SIZE} /> }
 ];
 
-function ActionItem({ href, text }: { href: string; text: string }) {
+function ActionItem({ href, text, icon }: { href: string; text: string; icon: JSX.Element }) {
 	return (
 		<NextLink href={href} passHref>
-			<Link>
+			<Link _hover={{ textDecoration: 'none' }}>
 				<Box
 					as="button"
 					width="500px"
@@ -21,10 +24,15 @@ function ActionItem({ href, text }: { href: string; text: string }) {
 					_hover={{ bgColor: 'blue.200' }}
 					rounded="xl"
 					boxShadow={BOX_SHADOW}
+					display="flex"
+					justifyContent="center"
 				>
-					<Text fontSize="2xl" fontWeight="bold">
-						{text}
-					</Text>
+					<HStack spacing={2}>
+						{icon}
+						<Text fontSize="2xl" fontWeight="bold">
+							{text}
+						</Text>
+					</HStack>
 				</Box>
 			</Link>
 		</NextLink>
@@ -46,7 +54,7 @@ export default function HomePage() {
 			</VStack>
 			<VStack spacing={6}>
 				{ActionItems.map((item) => (
-					<ActionItem key={item.name} text={item.name} href={item.path} />
+					<ActionItem key={item.name} text={item.name} href={item.path} icon={item.icon} />
 				))}
 			</VStack>
 		</VStack>

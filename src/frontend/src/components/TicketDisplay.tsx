@@ -56,7 +56,7 @@ export default function TicketDisplay({ tickets }: { tickets: Ticket[] }) {
 									<span style={{ fontWeight: 'bold' }}>Venue:</span> {ticket.venue}
 								</Text>
 								<Text fontSize="sm">
-									<span style={{ fontWeight: 'bold' }}>City:</span> {ticket.city}, {ticket.state}, {ticket.country}
+									<span style={{ fontWeight: 'bold' }}>Location:</span> {ticket.city}, {ticket.state}, {ticket.country}
 								</Text>
 								<Text fontSize="sm">
 									<span style={{ fontWeight: 'bold' }}>Seat:</span> {ticket.row}

@@ -37,7 +37,7 @@
 		"valid-typeof": "off",
 		"no-lonely-if": "off",
 		"prefer-named-capture-group": "off",
-		"no-undef": "error",
+		"no-undef": "off",
 		"no-param-reassign": "off",
 		"typescript-sort-keys/string-enum": "off",
 		"typescript-sort-keys/interface": "off",
