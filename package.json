@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build:api": "cd src/backend && npm run build",
+    "build:site": "cd src/frontend && npm run build",
     "start:api": "cd src/backend && node .",
     "start:site": "cd src/frontend && npm run dev",
     "start": "pm2 start ecosystem.config.js",

@@ -1,5 +1,5 @@
 import { type TicketPayload, useMutationInsertTickets } from '@/util/queries';
-import { type Seats, SeatType, type Game, calcPrice, useUser, type Seat } from '@/util/util';
+import { type Seats, SeatType, type Game, calcPrice, useUser, type SeatData, calcSeatPrice } from '@/util/util';
 import { Button, Heading, useDisclosure, useToast, VStack } from '@chakra-ui/react';
 import PurchaseModal from '@/components/PurchaseModal';
 
@@ -10,13 +10,13 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
 
 	const { isLoading, mutateAsync } = useMutationInsertTickets();
 
-    const handlePurchase = async (selected: Seat[], game: Game) => {
+    const handlePurchase = async (selected: SeatData[], game: Game) => {
 		const payloads = selected.map(seat => {
 			const payload: TicketPayload = {
 				owner: user.username,
 				row: seat.row,
 				column: seat.column,
-				price: game.price,
+				price: calcSeatPrice({ row: seat.row, column: seat.column }, game.price),
 				country: game.country,
 				city: game.city,
 				game_id: game.id,
@@ -43,7 +43,7 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
         onClose();
     };
 
-	const total: Seat[] = [];
+	const total: SeatData[] = [];
 
 	for (const [row, columns] of Object.entries(seats)) {
         for (const [column, seat] of columns.entries()) {

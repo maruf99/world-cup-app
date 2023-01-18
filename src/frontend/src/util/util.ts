@@ -127,20 +127,49 @@ function swap(list: any[], i: number, j: number) {
 	list[j] = temp;
 }
 
-export interface Seat {
+export interface SeatData {
 	row: string;
-	column: number
-};
+	column: number;
+}
 
-export function calcPrice(seats: any[], game: Game) {
-	return `$${seats.length * game.price}.00`;
+export const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
+export const columns = 20;
+
+// Calculates the total price of a set of seats.
+export function calcPrice(seats: SeatData[], game: Game) {
+	let total = 0;
+
+	for (const seat of seats) {
+		total += calcSeatPrice(seat, game.price);
+	}
+
+	return `$${total.toFixed(2)}`;
+}
+
+// Calculates the seat price based on the location of the seat on the seat map.
+export function calcSeatPrice(seat: SeatData, basePrice: Game['price']) {
+	const first =
+		([rows[1], rows[rows.length - 1]].includes(seat.row) && seat.column >= 3 && seat.column <= 16) || // check inner rows
+		(![rows[0], rows[rows.length]].includes(seat.row) && [3, 15].includes(seat.column)); // check inner columns
+
+	const second = ([rows[0], rows[rows.length]].includes(seat.row) && (seat.column >= 2 && seat.column <= 17)) || [2, 17].includes(seat.column);
+
+	let value = 0;
+
+	if (first) {
+		value = 0.4; // First ring of seats, tickets are 40% more expensive
+	}
+
+	if (second) {
+		value = 0.2; // Second ring of seats, tickets are 20% more expensive
+	}
+
+	return basePrice * (1 + value); // Remaining seats stay at base price.
 }
 
 export function getCountryFlag(name: string) {
 	return `/assets/countries/${name.replaceAll(' ', '-').toLowerCase()}.svg`;
 }
-
-export const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
 
 export enum SeatType {
 	None = 0,
@@ -155,9 +184,9 @@ export function generateSeats(tickets: Ticket[]): Seats {
 	const seats: Record<string, number[]> = {};
 
 	for (const row of rows) {
-		seats[row] = Array.from({ length: 20 });
+		seats[row] = Array.from({ length: columns });
 
-		for (let i = 0; i < 20; i++) {
+		for (let i = 0; i < columns; i++) {
 			if (checkSeat(tickets, row, i)) {
 				seats[row][i] = SeatType.Reserved;
 			} else {
@@ -174,7 +203,7 @@ export function generateSeats(tickets: Ticket[]): Seats {
 						} else {
 							seats[row][i] = SeatType.None;
 						}
-	
+
 						break;
 				}
 			}

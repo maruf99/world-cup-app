@@ -1,7 +1,6 @@
 import { type Ticket, useMutationDeleteTicket } from '@/util/queries';
 import { BOX_SHADOW } from '@/util/util';
 import {
-	Box,
 	Button,
 	Grid,
 	Modal,
