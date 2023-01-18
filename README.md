@@ -22,7 +22,7 @@ JavaScript does not have a separate ArrayList class like Java does. However, its
 
 ### Iteration
 
-When handling arrays, iteration is often used. We iterate through arrays at various points in both the frontend and backend. The primary loop used in our application are `for...of` loops, which are the same thing as Enhanced For Loops in Java. An example of nested for loops can be seen in the aforementioned [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L185). file, with a regular for loop nested inside an enhanced for loop.
+When handling arrays, iteration is often used. We iterate through arrays at various points in both the frontend and backend. The primary loop used in our application are `for...of` loops, which are the same thing as Enhanced For Loops in Java. An example of nested for loops can be seen in the aforementioned [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L185). file, with a regular for loop nested inside an enhanced for loop. A use of while loops can also be found in the same file, for the `binarySearch()` function.
 
 ### Classes/Objects
 
@@ -32,9 +32,20 @@ Additionally, each API route in the [`src/backend/src/routes`](src/backend/src/r
 
 ### Searching Algorithms
 
+In the Book Tickets page of the website, the user is prompted to pick a location. Once the user chooses, the application needs to find the corresponding object with the dataset for the chosen location, which requires searching for it from an array sent from the API. For this task, the searching algorithm we've opted to use is Binary Search, as it is faster than the Linear Search algorithm. This implementation of Binary Search is done through iteration, using a while loop rather than recursion.
+
 ### Sorting & Recursion Algorithms
 
-In order to use the Binary Search algorithm on an array, the array must already be sorted. In order to accomplish this, the sorting algorithm we made use of in this application is Quick Sort, a "divide and conquer" algorithm that works by picking an element as a pivot, and partioning the array to be searched around this pivot. Our implementation of Quick Sort can be seen in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L98), where the main `quickSort()`, `partition()`, and `swap()` functions are defined.
+In order to use the Binary Search algorithm on an array, the array must already be sorted. In order to accomplish this, the sorting algorithm we made use of in this application is Quick Sort, a "divide and conquer" algorithm that works by picking an element as a pivot, and partioning the array to be searched around this pivot. Our implementation of Quick Sort can be seen in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L98), where the main `quickSort()`, `partition()`, and `swap()` functions are defined. It makes use of exponential recursion, where each partition is recursively partitioned until the array is sorted.
+
+One key difference in our implementation is that we are sorting an array of objects, rather than numerical values. In this case, we compare and sort the elements in the array by the `city` property of each object, as that is used to identify each game throughout the program (the `id` property in the object is just the `city` property with the spaces replaced with dashes).
 
 ### Other
-We've used various other concepts in addition to the aforementioned ones, such as switch/case decisional structures, try/catch blocks etc.
+We've used various other concepts in addition to the aforementioned ones, such as switch/case decisional structures, try/catch blocks, reading a directory of files to retrieve each file name, etc. All in all, this project has helped strengthen our understanding of concepts learned during this semester, as well as providing us with an opportunity to learn additional concepts not covered in the course.
+
+## Image Credits
+Credits for images used in our project:
+
+- [Soccer background pattern](https://www.vecteezy.com/vector-art/464389-seamless-pattern-soccer-theme-for-use-as-background)
+- [Soccer ball image](https://cdn-icons-png.flaticon.com/512/53/53283.png)
+- [Icon](https://www.emirates247.com/polopoly_fs/1.695931.1671728119!/image/image.jpg)
