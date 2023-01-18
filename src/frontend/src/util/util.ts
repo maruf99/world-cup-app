@@ -154,14 +154,16 @@ export function calcSeatPrice(seat: SeatData, basePrice: Game['price']) {
 
 	const second = ([rows[0], rows[rows.length]].includes(seat.row) && (seat.column >= 2 && seat.column <= 17)) || [2, 17].includes(seat.column);
 
+	const third = [1, 18].includes(seat.column);
+
 	let value = 0;
 
 	if (first) {
 		value = 0.4; // First ring of seats, tickets are 40% more expensive
-	}
-
-	if (second) {
+	} else if (second) {
 		value = 0.2; // Second ring of seats, tickets are 20% more expensive
+	} else if (third) {
+		value = 0.1; // Second ring of seats, tickets are 10% more expensive
 	}
 
 	return basePrice * (1 + value); // Remaining seats stay at base price.
