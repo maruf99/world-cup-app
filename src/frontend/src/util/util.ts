@@ -186,7 +186,8 @@ export function generateSeats(tickets: Ticket[]): Seats {
 	const seats: Record<string, number[]> = {};
 
 	for (const row of rows) {
-		seats[row] = Array.from({ length: columns });
+		// To construct an array with an initial capacity , we call the constructor, similar to an ArrayList in Java.
+		seats[row] = new Array(20);
 
 		for (let i = 0; i < columns; i++) {
 			if (checkSeat(tickets, row, i)) {
@@ -211,8 +212,6 @@ export function generateSeats(tickets: Ticket[]): Seats {
 			}
 		}
 	}
-
-	console.log('generated', seats);
 
 	return seats;
 }
@@ -269,8 +268,10 @@ export function saveUserState(data: UserData) {
 	try {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-		}
-	} catch {}
+		}	
+	} catch (e) {
+		console.log(e);
+	}
 
 	return data;
 }

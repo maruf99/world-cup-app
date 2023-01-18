@@ -76,6 +76,7 @@
 		"unicorn/catch-error-name": "off",
 		"unicorn/better-regex": "off",
 		"unicorn/numeric-separators-style": "off",
+		"unicorn/no-new-array": "off",
 		"react/jsx-sort-props": "off"
 	}
 }

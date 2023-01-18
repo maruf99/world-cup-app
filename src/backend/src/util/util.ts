@@ -24,7 +24,7 @@ The information in this text file follows the following format:
 ~ City, State/Province
 @ Venue
 - Team 1, Team 2
-$ Price per ticket
+$ Base price per ticket (Used to calculate price based on seat location relative to field)
 
 In order to parse this data into a class/object we will read the file
 with Node.js's File system API, which is similar to Java's Files API.
