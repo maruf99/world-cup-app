@@ -3,7 +3,6 @@ import type { CookieSerializeOptions } from 'cookie';
 import cookie from 'cookie';
 import send from '@polka/send';
 
-
 declare module 'http' {
 	export interface ServerResponse {
 		append: (header: string, value: any) => void;
