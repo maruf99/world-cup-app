@@ -60,7 +60,7 @@ export default function Contact() {
 				<Image maxWidth="300px" mx="auto" my={5} src="/logo.svg" />
 
 				<Heading size="xl">Contact</Heading>
-                <Heading size="sm">Send us a message!</Heading>
+                <Heading size="sm">Have any questions? Send us a message!</Heading>
 
 				<Formik
 					initialValues={{ subject: '', message: '' }}
