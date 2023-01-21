@@ -2,7 +2,7 @@ import type { Route } from '#util/http';
 import { COOKIE_NAME, deleteCookie } from '#util/auth';
 import type { Request, Response } from 'polka';
 
-export default class LogOut implements Route {
+export default class LogoutRoute implements Route {
 	public auth = true;
 
 	public post(_: Request, res: Response) {

@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
+// 404 Page that users are redirected to if page wasn't found.
 export default function NotFoundPage() {
 	return (
 		<Layout>

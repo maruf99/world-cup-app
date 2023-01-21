@@ -8,6 +8,7 @@ const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 
 
 export default function GameDisplayPage() {
+    // React hook that fetches /games API route. See util/queries.ts.
     const { isLoading, error, data } = useQueryGames();
 
     return (

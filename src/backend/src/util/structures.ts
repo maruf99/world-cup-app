@@ -1,3 +1,4 @@
+// Represents a country with its set of games taking place there
 export class Country {
     public name: string;
     public games: Game[];
@@ -23,6 +24,7 @@ export class Country {
     }
 }
 
+// Representes each game that takes place in a country, including data stuch as the city, state, venue, teams, etc.
 export class Game {
     public id: string;
     public city: string;

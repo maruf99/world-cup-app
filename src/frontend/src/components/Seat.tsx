@@ -4,6 +4,7 @@ import { Center, type ButtonProps, type CenterProps } from '@chakra-ui/react';
 const BOX_WIDTH = 8;
 const SELECTED_COLOR = 'blue.300';
 
+// Seat component that assigns different colours to each type of seat.
 export function SeatKey({ type }: { type: SeatType }) {
 	let bgColor = '';
 
@@ -54,6 +55,6 @@ export default function Seat({ type, text, onClick = () => null }: { type: SeatT
 		}
 	}
 
-	// @ts-expect-error
+	// @ts-expect-error the as='button' attribute will give it the typings of a Button component
 	return <Center {...props}>{text}</Center>;
 }

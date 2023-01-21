@@ -2,6 +2,7 @@ import constate from 'constate';
 import { useState } from 'react';
 import type { Ticket } from './queries';
 
+// The name for the Local Storage key where the current user session is stored.
 const STORAGE_KEY = 'user_data';
 
 export const BOX_SHADOW = '0 2px 5px rgb(0 0 0 / 0.49)';
@@ -40,6 +41,7 @@ export interface ErrorData {
 	url: string;
 }
 
+// Custom Error Class that handles API errors.
 export class APIError extends Error {
 	public constructor(message: string, data: ErrorData) {
 		super(message);
@@ -49,6 +51,7 @@ export class APIError extends Error {
 
 export type Game = GameData['games'][number];
 
+// Function used to find a specific game from an array of games based on its ID. Uses Binary Search.
 export function findGame(data: GameData[], target: string): Game {
 	let countryIndex = -1;
 	let gameIndex = -1;
@@ -72,6 +75,7 @@ export function findGame(data: GameData[], target: string): Game {
 	return gameIndex === -1 ? null : data[countryIndex].games[gameIndex];
 }
 
+// Binary Search algorithm used to search through an array of objects based on id property.
 function binarySearch(list: GameData['games'], target: string) {
 	let start = 0;
 	let end = list.length - 1;
@@ -95,6 +99,8 @@ function binarySearch(list: GameData['games'], target: string) {
 	return -1;
 }
 
+// Quick Sort algorithm that sorts a list of game objects, based on city property, which
+// is almost identical to id property.
 function quickSort(list: GameData['games'], low: number, high: number) {
 	if (low < high) {
 		const partitioned = partition(list, low, high);
@@ -146,7 +152,7 @@ export function calcPrice(seats: SeatData[], game: Game) {
 	return `$${total.toFixed(2)}`;
 }
 
-// Calculates the seat price based on the location of the seat on the seat map.
+// Calculates the seat price based on the location of the seat on the seat map, relative to the field.
 export function calcSeatPrice(seat: SeatData, basePrice: Game['price']) {
 	const first =
 		([rows[1], rows[rows.length - 1]].includes(seat.row) && seat.column >= 3 && seat.column <= 16) || // check inner rows
@@ -173,20 +179,25 @@ export function getCountryFlag(name: string) {
 	return `/assets/countries/${name.replaceAll(' ', '-').toLowerCase()}.svg`;
 }
 
+// Seat Type Enum. This will number each constant from 0 onwards, in increasing order.
+// This is a TypeScript exclusive feature, that provides a similar API to Java enums.
+// We use enum constants instead of raw numerical values for Seat Type to make the
+// code more readable.
 export enum SeatType {
-	None = 0,
-	Empty = 1,
-	Selected = 2,
-	Reserved = 3
+	None,
+	Empty,
+	Selected,
+	Reserved
 }
 
 export type Seats = Record<string, SeatType[]>;
 
+// Generates a nested array that representes seat map, taking into account already purchased seats.
 export function generateSeats(tickets: Ticket[]): Seats {
 	const seats: Record<string, number[]> = {};
 
 	for (const row of rows) {
-		// To construct an array with an initial capacity , we call the constructor, similar to an ArrayList in Java.
+		// To construct an array with an initial capacity, we call the constructor, similar to an ArrayList in Java.
 		seats[row] = new Array(20);
 
 		for (let i = 0; i < columns; i++) {
@@ -216,6 +227,7 @@ export function generateSeats(tickets: Ticket[]): Seats {
 	return seats;
 }
 
+// Checks to see if a specific seat is already reserved, using an enhanced for loop.
 function checkSeat(tickets: Ticket[], row: string, column: number) {
 	if (tickets) {
 		for (const ticket of tickets) {
@@ -228,6 +240,8 @@ function checkSeat(tickets: Ticket[], row: string, column: number) {
 	return false;
 }
 
+// Utility function to make HTTP requests to the API backend, using JavaScript's native
+// fetch() function.
 export async function fetchAPI<T>(path: string, options: RequestInit = {}) {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
 		...options,
@@ -255,6 +269,7 @@ export async function fetchAPI<T>(path: string, options: RequestInit = {}) {
 	}
 }
 
+// Retrieves the user session from local storage.
 export function getUserState(): UserData {
 	if (typeof window !== 'undefined') {
 		const data = localStorage.getItem(STORAGE_KEY);
@@ -264,6 +279,7 @@ export function getUserState(): UserData {
 	return null;
 }
 
+// Saves the user session to local storage.
 export function saveUserState(data: UserData) {
 	try {
 		if (typeof window !== 'undefined') {
@@ -276,6 +292,7 @@ export function saveUserState(data: UserData) {
 	return data;
 }
 
+// Removes the user session from local storage.
 export function clearUserState() {
 	if (typeof window !== 'undefined') {
 		localStorage?.removeItem(STORAGE_KEY);
@@ -296,6 +313,7 @@ export const [UserProvider, useUser, setUser] = constate(
 	(value) => value.setUser
 );
 
+// Waits for a certain amount in ms before continuing to run the program.
 // eslint-disable-next-line @typescript-eslint/promise-function-async
 export function wait(ms: number) {
 	return new Promise((resolve) => {

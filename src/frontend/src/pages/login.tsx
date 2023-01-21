@@ -10,12 +10,17 @@ export default function LoginPage() {
 	const setCurrentUser = setUser();
 	const toast = useToast();
 
+	// If the user is already logged in, redirect them to home page.
 	useEffect(() => {
 		if (user && router.isReady) {
 			void router.push('/');
 		}
 	});
 
+	// We send a POST http request to the /auth/login API route. This will
+	// validate that the username and password exist and are correct,and create
+	// a new user session that's stored in a cookie and saved to local storage,
+	// so that the website knows that the user is logged in.
 	const handleLogin = async (data: LoginData) => {
 		try {
 			const loginData = await fetchAPI<UserData>('/auth/login', {

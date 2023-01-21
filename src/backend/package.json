@@ -23,7 +23,6 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.3",
 		"helmet": "^6.0.1",
-		"node-fetch": "^2.6.7",
 		"polka": "^1.0.0-next.22",
 		"readdirp": "^3.6.0",
 		"reflect-metadata": "^0.1.13",
@@ -34,7 +33,6 @@
 		"@types/better-sqlite3": "^7.6.3",
 		"@types/body-parser": "^1.19.2",
 		"@types/cookie": "^0.4.1",
-		"@types/cors": "^2.8.13",
-		"@types/node-fetch": "^2.6.2"
+		"@types/cors": "^2.8.13"
 	}
 }

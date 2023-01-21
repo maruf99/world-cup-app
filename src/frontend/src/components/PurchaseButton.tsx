@@ -8,8 +8,11 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
 	const user = useUser();
 	const toast = useToast();
 
+	// Request the API to add the purchased tickets to the database so they can be retrieved
+	// for later use.
 	const { isLoading, mutateAsync } = useMutationInsertTickets();
 
+	// functions that creates the tickets when the purchase button is clicked.
     const handlePurchase = async (selected: SeatData[], game: Game) => {
 		const payloads = selected.map(seat => {
 			const payload: TicketPayload = {
@@ -44,7 +47,8 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
     };
 
 	const total: SeatData[] = [];
-
+	
+	// Enhanced for loop that adds each selected seat to the total seats array.
 	for (const [row, columns] of Object.entries(seats)) {
         for (const [column, seat] of columns.entries()) {
             if (seat === SeatType.Selected) {
@@ -52,7 +56,9 @@ export default function PurchaseButton({ seats, game }: { seats: Seats; game: Ga
             }
         }
 	}
-
+	
+	// Calculates the total price for all the selected seats. Each seat price
+	// will vary based on its distance from the field.
     const price = calcPrice(total, game);
 
 	return (

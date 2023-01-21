@@ -5,6 +5,7 @@ import NextLink from 'next/link';
 
 const BOX_SIZE = '30px';
 
+// Data for action buttons that appear on the home page. 
 const ActionItems = [
 	{ name: 'View Your Tickets', path: '/tickets', icon: <ViewIcon boxSize={BOX_SIZE} /> },
 	{ name: 'Book Tickets', path: '/games', icon: <PlusSquareIcon boxSize={BOX_SIZE} /> },

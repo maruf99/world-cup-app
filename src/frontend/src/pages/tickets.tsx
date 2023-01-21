@@ -11,6 +11,7 @@ const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 export default function TicketsPage() {
 	const user = useUser();
 
+	// React hook that fetches /tickets API route. See util/queries.ts.
 	const { isLoading, error, data: tickets } = useQueryUserTickets(user?.username, Boolean(user));
 
 	return (

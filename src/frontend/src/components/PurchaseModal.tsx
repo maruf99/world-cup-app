@@ -1,6 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button } from '@chakra-ui/react';
 import type { MouseEventHandler } from 'react';
 
+// Modal that appears requesting for the user to confirm that they want to purchase the tickets.
 export default function PurchaseModal({
 	isOpen,
 	onClose,

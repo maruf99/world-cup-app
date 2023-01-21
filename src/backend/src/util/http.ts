@@ -25,7 +25,9 @@ export enum Methods {
 
 type RouteHandler = (req?: Request, res?: Response, next?: NextHandler) => void;
 
+// Each Route class follows this interface, and can have GET, POST, PATCH, and DELETE methods.
 export interface Route {
+	// Whether or not the user needs to be authenticated to use this route.
 	auth?: boolean;
 
 	[Methods.Get]?: RouteHandler;
@@ -34,6 +36,7 @@ export interface Route {
 	[Methods.Delete]?: RouteHandler;
 }
 
+// Adds various helper methods to HTTP request object, such as parsing cookies.
 export const extensions: Middleware = (req, res, next) => {
 	req.cookies = cookie.parse(req.headers.cookie ?? '');
 

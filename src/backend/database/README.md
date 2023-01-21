@@ -1,1 +1,1 @@
-This file is only included so that the folder is included by git.
+This file is only included so that the folder is included by git and is present in the repository. The actual database files are unique to every instance, so they are not committed.

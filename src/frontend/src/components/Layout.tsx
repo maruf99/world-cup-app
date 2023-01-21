@@ -5,6 +5,8 @@ import styles from '@/styles/Body.module.css';
 
 const NavBar = dynamic(() => import('./NavBar'), { ssr: false });
 
+// This is the base layout component for the site, that every page uses, containing
+// the background and the navigation bar at the top.
 export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<>

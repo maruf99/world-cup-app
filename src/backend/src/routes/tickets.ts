@@ -3,6 +3,8 @@ import type { Request, Response } from 'polka';
 import { inject, injectable } from 'tsyringe';
 import { Database } from 'better-sqlite3';
 
+// Handles logic of creating, deleting, and retrieving ticket data from the database,
+// using SQL queries.
 @injectable()
 export default class TicketsRoute implements Route {
 	public constructor(@inject('sql') private readonly sql: Database) {}

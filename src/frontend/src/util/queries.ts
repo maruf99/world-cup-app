@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { fetchAPI, type GameData } from "./util";
 
+// Fetches game data from the API backend.
 export function useQueryGames() {
 	return useQuery<GameData[]>('gameData', () => fetchAPI<GameData[]>('/games'));
 }
@@ -22,13 +23,18 @@ export interface Ticket {
 
 export type TicketPayload = Omit<Ticket, 'id' | 'created'>;
 
+// Fetches all reserved tickets for a specific game from the API backend, so that the application can display
+// and grey these seats out.
 export function useQueryGameTickets(city: string, enabled: boolean) {
 	return useQuery<Ticket[]>(['tickets', city], () => fetchAPI<Ticket[]>(`/tickets?id=${city}`), { enabled });
 }
 
+// Fetches all reserved tickets for a specific user from the API backend, in order to display in the My Tickets
+// section.
 export function useQueryUserTickets(user: string, enabled: boolean) {
 	return useQuery<Ticket[]>(['tickets', user], () => fetchAPI<Ticket[]>(`/tickets?user=${user}`), { enabled });
 }
+
 
 export function useMutationInsertTickets() {
 	const client = useQueryClient();

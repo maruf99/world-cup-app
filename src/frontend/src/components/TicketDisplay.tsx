@@ -81,6 +81,7 @@ export default function TicketDisplay({ tickets }: { tickets: Ticket[] }) {
 	);
 }
 
+// Modal prompting user to confirn that they want to delete the ticket.
 function CancelModal({
 	isOpen,
 	onClose,

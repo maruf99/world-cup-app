@@ -6,6 +6,11 @@ import type { Request, Response } from 'polka';
 import type { User } from "#util/util";
 import type { Session } from "#util/auth";
 
+// Dependency injection at runtime using the tsyringe module.
+// TypeScript allows the use of decorator functions, which are not present in regular JavaScript,
+// but are present in other languages like Java and Python.
+// Since we only need the constructor for dependency injection, we can leave its contents empty.
+// In some other routes, we do not need to add a constructor at all.
 @injectable()
 export default class LoginRoute implements Route {
     public constructor(@inject('sql') private readonly sql: Database) {}

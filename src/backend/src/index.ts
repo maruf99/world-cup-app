@@ -19,6 +19,7 @@ import { container } from 'tsyringe';
 import { STATUS_CODES } from 'node:http';
 import Database from 'better-sqlite3';
 
+// Initialize the SQlite database and data table schemas.
 const sql = new Database(join(__dirname, '..', 'database', 'database.sqlite'));
 
 sql.pragma('journal_mode = WAL');
@@ -50,6 +51,7 @@ sql.prepare(
 
 container.register('sql', { useValue: sql });
 
+// Create the HTTP web server using the polka module.
 const app = polka({
 	onError(err, _, res) {
 		res.setHeader('Content-Type', 'application/json');
@@ -77,6 +79,7 @@ app.use(auth);
 
 const METHODS = [Methods.Get, Methods.Post, Methods.Patch, Methods.Delete];
 
+// Reads the routes directory and returns data about each file as an asynchronus iterator
 const routes = readdirp(join(__dirname, 'routes'), { fileFilter: '*.js' });
 
 async function init() {
@@ -86,6 +89,7 @@ async function init() {
 
 	container.register('gameData', { useValue: gameData });
 
+	// Asynchronus iteration with an enhanced for loop, hence the await keyword.
 	for await (const file of routes) {
 		let routePath = file.path
 			.replace(/.js$/g, '')
@@ -97,6 +101,9 @@ async function init() {
 
 		loaded.push(routePath);
 
+		// Rather than instantiating the class with the new keyword, we use container.resolve from tsyringe
+		// so that dependency injection of the sql database wrapper can occur, and we can use it in those
+		// files.
 		const route = container.resolve<Route>((await import(file.fullPath)).default);
 
 		for (const method of METHODS) {

@@ -13,6 +13,7 @@ const validator = (field: string) => {
 	return yup.string().min(5, text).max(20, text).required(`${field} is required.`);
 };
 
+// Schema used for the form that handles minimum and maximum lengths for fields.
 const LoginSchema = yup.object().shape({
 	username: validator('Username'),
 	password: validator('Password')

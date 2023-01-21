@@ -22,6 +22,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 
 	const [game, setGame] = useState<Game>(null);
 
+	// Finds the game based on the current page.
 	useEffect(() => {
 		if (router.isReady) {
 			const found = findGame(data, router.query.id as string);
@@ -32,6 +33,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 
 	const { isLoading, error, data: tickets } = useQueryGameTickets(game?.id, Boolean(game));
 
+	// Generates the seat map and saves them to state.
 	const [seats, setSeats] = useState(generateSeats(tickets));
 
 	useEffect(() => {
@@ -43,6 +45,7 @@ export default function SeatDisplay({ data }: { data: GameData[] }) {
 
 	const seatRows = [];
 
+	// Changes state of seat to selected/empty when clicked in the seat map.
 	const handleSelect = (type: SeatType, row: string, index: number) => {
 		switch (type) {
 			case SeatType.Empty:

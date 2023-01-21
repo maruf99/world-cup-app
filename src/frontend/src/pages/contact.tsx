@@ -16,6 +16,7 @@ const validator = (field: string, min: number, max: number) => {
 	return yup.string().min(min, text).max(max, text).required(`${field} is required.`);
 };
 
+// Schema used for the form that handles minimum and maximum lengths for fields.
 const ContactSchema = yup.object().shape({
 	subject: validator('Subject', 4, 20),
 	message: validator('Message', 10, 250)
@@ -27,6 +28,8 @@ export default function Contact() {
 
     const handleSubmit = async (data: ContactData & { user: string }) => {
         try {
+			// We send a POST HTTP request to the contact API route with the message in the body.
+			// This triggers it to write the messages to a messages.txt file.
 			await fetchAPI('/contact', {
 				method: 'POST',
 				body: JSON.stringify(data)

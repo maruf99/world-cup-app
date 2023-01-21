@@ -6,6 +6,7 @@ import { clearUserState, fetchAPI, setUser, useUser } from '@/util/util';
 import { useRouter } from 'next/router';
 import type { MouseEventHandler } from 'react';
 
+// Data for items on the navigation bar.
 const NavPages = [
 	{ name: 'Home', path: '/' },
 	{ name: 'My Tickets', path: '/tickets' },
@@ -37,6 +38,8 @@ export default function NavBar() {
 	const setCurrentUser = setUser();
 	const router = useRouter();
 
+	// Request the API to logout the user when they press the logout button,
+	// and delete the user session from local storage.
 	const handleLogout: MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
 

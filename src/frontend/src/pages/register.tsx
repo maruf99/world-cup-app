@@ -16,6 +16,11 @@ export default function LoginPage() {
 		}
 	});
 
+	// We send a POST http request to the /auth/register API route. This will
+	// validate that the username is not already in use, and create an account
+	// that's saved to an SQLite database. A new user session is created that's
+	// stored in a cookie and saved to local storage, so that the website knows
+	// that the user is logged in.
 	const handleRegister = async (data: LoginData) => {
 		try {
 			const registerData = await fetchAPI<UserData>('/auth/register', {
