@@ -192,7 +192,7 @@ export enum SeatType {
 
 export type Seats = Record<string, SeatType[]>;
 
-// Generates a nested array that representes seat map, taking into account already purchased seats.
+// Generates an object that representes seat map, taking into account already purchased seats.
 export function generateSeats(tickets: Ticket[]): Seats {
 	const seats: Record<string, number[]> = {};
 

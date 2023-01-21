@@ -18,7 +18,7 @@ File writing is used in the contact page logic handled by the backend. On the we
 
 ### Arrays
 
-JavaScript does not have a separate ArrayList class like Java does. However, its Array class is very similar in usage to ArrayLists in Java, with methods like `.push()` and `.slice()` being used to add and remove elements from arrays. Arrays are used throughout the frontend and backend of the application, such as storing datasets of objects like tickets and individual game data. One of it's central uses is for generating the field map for each game in the frontend, where a nested array is used to represent the field. The top level of the array represents each row of seats, while the inner sublevel of each array represents the individual seat in each row. This implementation can be seen in the generateSeats() function in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L196).
+JavaScript does not have a separate ArrayList class like Java does. However, its Array class is very similar in usage to ArrayLists in Java, with methods like `.push()` and `.slice()` being used to add and remove elements from arrays. Arrays are used throughout the frontend and backend of the application, such as storing datasets of objects like tickets and individual game data. One of it's central uses is for generating the seat map for each game in the frontend, where each row in the object is an array of numbers that represents each seat. This implementation can be seen in the generateSeats() function in [`src/frontend/src/util/util.ts`](src/frontend/src/util/util.ts#L196).
 
 ### Iteration
 
@@ -29,6 +29,8 @@ When handling arrays, iteration is often used. We iterate through arrays at vari
 Classes are primarily used in the backend part of the application. After the data from `games.txt` is parsed, individual Country and Game classes are created for each entry in the data. We use the toJSON method in each class to transform them into JSON compatible objects, so that they can be sent by the API to the website over an HTTP request. The class implementations can be seen in [`src/backendend/src/util/structures.ts`](src/backend/src/util/structures.ts).
 
 Additionally, each API route in the [`src/backend/src/routes`](src/backend/src/routes) is its own class. Each of these classes can have their own `get()`, `post()`, `put()`, and `delete()` methods, which correspond to the different types of basic HTTP requests used by the application.
+
+On top of this, regular JavaScript objects are used throughout the program for various purposes, such as the aforementioned generateSeats() function, which returns an object where each value is an array of numbers representing seats, mapped to the letter of their row as a key.
 
 ### Searching Algorithms
 

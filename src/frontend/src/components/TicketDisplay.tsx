@@ -66,7 +66,7 @@ export default function TicketDisplay({ tickets }: { tickets: Ticket[] }) {
 									<span style={{ fontWeight: 'bold' }}>Booking Date:</span> {new Date(ticket.created).toLocaleString()}
 								</Text>
 								<Text fontSize="sm">
-									<span style={{ fontWeight: 'bold' }}>Amount Paid:</span> ${ticket.price}.00
+									<span style={{ fontWeight: 'bold' }}>Amount Paid:</span> ${ticket.price.toFixed(2)}
 								</Text>
 							</VStack>
 							<Button marginTop="2px" size="sm" colorScheme="red" isLoading={isLoading} alignSelf="center" onClick={onOpen}>
